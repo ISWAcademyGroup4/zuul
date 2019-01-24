@@ -12,8 +12,6 @@ zuul:
     #      url: http://localhost:8071
       stripPrefix: false
 
-
-
 eureka:
   client:
     registerWithEureka: true
