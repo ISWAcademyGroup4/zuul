@@ -1,16 +1,9 @@
 zuul:
-  host:
-    connect-timeout-millis: 10000
-  #prevents services from automatic registration
-#  ignoredServices: '*'
-  #Service will be mapped under the /api URI
   prefix: /api
   routes:
-    hello-server:
+    voucherservice:
       path: /voucher/**
-      serviceId: voucher-api-service
-    #      url: http://localhost:8071
-      stripPrefix: false
+      serviceId: voucherservice
 
 eureka:
   client:
@@ -28,15 +21,11 @@ spring:
   application:
     name: zuulservice
 
-#Increase the hystrix timeout to 60s (for all)
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 10000 #10 seconds
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 10000 #10 seconds
 
-#ribbon:
-#  ConnectTimeout: 3000 # 3 seconds
-#  ReadTimeout: 10000 # 10 seconds
