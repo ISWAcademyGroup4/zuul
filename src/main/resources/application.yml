@@ -3,14 +3,22 @@ zuul:
   routes:
     voucherservice:
       path: /voucher/**
-      serviceId: voucherservice
+#      serviceId: VOUCHER-SERVICE
+      url: http://172.20.20.23:5000
+    userservice:
+      path: /user/**
+#      serviceId: USERSERVICE
+      url: http://172.20.20.66:8085
+    auditservice:
+      path: /log/**
+      url: http://172.20.20.66:8080
 
 eureka:
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://localhost:8070/eureka/
+      defaultZone: http://172.20.20.23:8070/eureka/
     instance:
       hostname: localhost
 
@@ -19,13 +27,14 @@ server:
 
 spring:
   application:
-    name: zuulservice
+    name: zuul-service
 
-#hystrix:
-#  command:
-#    default:
-#      execution:
-#        isolation:
-#          thread:
-#            timeoutInMilliseconds: 10000 #10 seconds
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
 
